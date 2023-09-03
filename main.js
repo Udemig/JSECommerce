@@ -159,8 +159,39 @@ function renderBasket() {
 
 function calculateTotal(){
 
+//Dizilerde  İşlemler için reduce metodu kullanılır
+
+//console.log(basket)
+
+//Toplam fiyat hesablamak diziyi reduce ile dönüp işlem yapyıorz
+const sum=basket.reduce((sum,i)=>sum + i.price * i.amount,0)
+
+//Sepetteki toplam ürün sayısını hesaplıyoruz
+const amount=basket.reduce((sum,i)=>sum + i.amount,0)
+
+
+//Toplam Değeri HTML tarafına gönderiyoruz
+totalSpan.innerText=sum
+
+
+//Toplam Ürün sayısının html gönderdik
+totalCount.innerText=amount + ' ' + 'Ürün'
+
 }
 
-function deleteItem(){
-    
+
+//Sepetten Ürün Silme
+function deleteItem(deleteid){
+
+  //Kaldırılacak ürünler Dışındaki Tüm Ürünleri al
+
+  basket=basket.filter((i) => i.id !== deleteid)
+//console.log(basket)
+
+//sepet listesini güncelle
+
+renderBasket()
+
+
+
 }
